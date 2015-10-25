@@ -18,9 +18,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    
-    /* busca la identidad del usuario a través de su $id */
-
     public static function findIdentity($id)
     {
         
@@ -35,8 +32,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    
-    /* Busca la identidad del usuario a través de su token de acceso */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         
@@ -60,8 +55,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param  string      $username
      * @return static|null
      */
-    
-    /* Busca la identidad del usuario a través del username */
     public static function findByUsername($username)
     {
         $users = Users::find()
@@ -81,8 +74,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    
-    /* Regresa el id del usuario */
     public function getId()
     {
         return $this->id;
@@ -91,8 +82,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    
-    /* Regresa la clave de autenticación */
     public function getAuthKey()
     {
         return $this->authKey;
@@ -101,8 +90,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
-    
-    /* Valida la clave de autenticación */
     public function validateAuthKey($authKey)
     {
         return $this->authKey === $authKey;
