@@ -2,15 +2,15 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Customers */
 
-$this->title = 'Update Customers: ' . ' ' . $model->name;
+/* @var $this yii\web\View */
+/* @var $model app\modules\catalogs\models\Customers */
+
+$this->title = 'Create Customers';
 $this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->Id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="customers-update">
+<div class="customers-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

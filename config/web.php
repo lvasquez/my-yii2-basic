@@ -9,7 +9,9 @@ $config = [
     'modules' => [
         'sales' => [
             'class' => 'app\modules\sales\Sales',
-            // ... other configurations for the module ...
+        ],
+         'catalogs' => [
+            'class' => 'app\modules\catalogs\Catalogs',
         ],
     ],
     'components' => [
