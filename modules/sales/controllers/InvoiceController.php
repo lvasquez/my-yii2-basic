@@ -5,7 +5,6 @@ namespace app\modules\sales\controllers;
 use Yii;
 use app\modules\sales\models\Invoice;
 use app\modules\sales\models\InvoiceSearch;
-use app\modules\sales\models\InvoiceDetail;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,7 +61,6 @@ class InvoiceController extends Controller
     public function actionCreate()
     {
         $model = new Invoice();
-        $model_d = new InvoiceDetail();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

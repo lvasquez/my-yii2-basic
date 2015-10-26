@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'id')->hiddenInput(['id_model'=> $model->id])->label(false); ?>
+
     <?= $form->field($model, 'invoice_no')->textInput() ?>
 
     <?= $form->field($model, 'companyName')->textInput(['maxlength' => true]) ?>
@@ -29,3 +31,79 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+<?php
+if(!$model->isNewRecord)
+{
+
+?>
+
+<div id="grid"></div>
+
+<script>
+
+    var id = $("#invoice-id").val();
+
+    console.log(id);
+
+    var remoteDataSource = new kendo.data.DataSource({
+        pageSize: 20,
+         transport: {
+             read: {
+                 url: '?r=sales/invoicedetail/index&id=' + id,
+                 dataType: "json"
+             }
+         },
+         schema: {
+             model: {
+                 id: "id",
+                 fields: {
+                     Id: { editable: false, type: "number" },
+                     id_product: { validation: { required: true} },
+                     count: { type: "number", validation: { required: true} },
+                     price: { type: "number", validation: { required: true} },
+                 }
+             }
+         }
+     });
+
+    $('#grid').kendoGrid({
+        dataSource: remoteDataSource,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        columns: [
+                {
+                    field: "id",
+                    title: "Id"
+                },
+                {
+                    field: "id_product",
+                    title: "Product"
+                },
+                {
+                    field: "count",
+                    title: "Count"
+                },
+                {
+                    field: "price",
+                    title: "Price"
+                },
+                {
+                    command: ["edit", "destroy"],
+                    width: "200px"
+                }
+        ]
+    });
+</script>
+
+
+<?php
+}
+?>
